@@ -1,0 +1,22 @@
+name: Hyundai Card Auto Sync
+
+on:
+  schedule:
+    - cron: '0 23 * * *' # 한국 시간 오전 8시 실행
+  workflow_dispatch: # 직접 실행 버튼 활성화
+
+jobs:
+  run-scraping:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      - name: Install dependencies
+        run: pip install pandas selenium webdriver-manager gspread oauth2client lxml
+      - name: Run Scraper
+        env:
+          GOOGLE_SERVICE_KEY: ${{ secrets.GOOGLE_SERVICE_KEY }}
+        run: python auto_scraping.py
