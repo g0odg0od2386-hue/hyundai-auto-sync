@@ -1,3 +1,4 @@
+
 import time
 import pandas as pd
 import os
@@ -16,7 +17,7 @@ members = [
 ]
 
 start_date = datetime(2026, 4, 1)
-end_date = datetime(2026, 4, 16)
+end_date = datetime(2026, 4, 20)
 save_path = r"C:\Users\J"
 # -------------------------------
 
@@ -81,7 +82,7 @@ try:
         final_df = final_df[cols]
 
         timestamp = datetime.now().strftime("%H%M%S")
-        file_name = f"현대_1월실적_4인통합_{timestamp}.xlsx"
+        file_name = f"현대_4월실적_4인통합_{timestamp}.xlsx"
         full_path = os.path.join(save_path, file_name)
         
         final_df.to_excel(full_path, index=False)
